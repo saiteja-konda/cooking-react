@@ -4,9 +4,6 @@ const FETCH_POSTS_REQUEST = 'FETCH_POSTS_REQUEST';
 const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 const FETCH_POSTS_FAILURE = 'FETCH_POSTS_FAILURE';
 
-const FETCH_SINGLE_POST_REQUEST = 'FETCH_SINGLE_POST_REQUEST';
-const FETCH_SINGLE_POST_SUCCESS = 'FECTH_SINGLE_POST_SUCCESS';
-const FETCH_SINGLE_POST_FAILURE = 'FECTH_SINGLE_POST_FAILUR';
 
 const ADD_POST_REQUEST = 'ADD_POST_REQUEST';
 const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS';
@@ -43,30 +40,7 @@ export const fetchPostFailure = error => {
     status: 'red',
   };
 };
-export const fetchSinglePostRequest = id => {
-  return {
-    type: FETCH_SINGLE_POST_REQUEST,
-    info: `Requesting to fetch post by id ${id}`,
-    payload: id,
-    status: 'orange',
-  };
-};
-export const fetchSinglePostSuccess = post => {
-  return {
-    type: FETCH_SINGLE_POST_SUCCESS,
-    info: `Post fetched successfully`,
-    payload: post,
-    status: 'green',
-  };
-};
-export const fetchSinglePostFailure = error => {
-  return {
-    type: FETCH_SINGLE_POST_FAILURE,
-    info: 'failed to fetch post',
-    payload: error,
-    status: 'red',
-  };
-};
+
 export const addNewPostRequest = () => {
   return {
     type: ADD_POST_REQUEST,
@@ -128,21 +102,7 @@ export const fetchPosts = () => {
       });
   };
 };
-export const fetchPost = (id) => {
-  return function (dispatch) {
-    dispatch(fetchSinglePostRequest(id));
 
-    axios
-      .get(url + `/${id}`)
-      .then(res => {
-        const post = res.data 
-        dispatch(fetchSinglePostSuccess(post));
-      })
-      .catch(err => {
-        dispatch(fetchSinglePostFailure(err.response.data));
-      });
-  };
-};
 export const addPost = post => {
   return function (dispatch) {
     dispatch(addNewPostRequest());

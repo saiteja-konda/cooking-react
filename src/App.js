@@ -7,12 +7,14 @@ import Post from './components/Post';
 function App() {
   return (
     <Router>
-      <Switch>
-        <Route path="/post/:id" component={Post} />
-        <div className="App">
-          <Homepage />
-        </div>
-      </Switch>
+      <>
+        <Switch>
+          <Route ext path="/post/:id" component={Post} />
+          <div className="App">
+            <Homepage />
+          </div>
+        </Switch>
+      </>
     </Router>
   );
 }

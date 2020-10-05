@@ -1,4 +1,5 @@
 import React from 'react';
+import Nav from './components/nav';
 import { Homepage } from './components/Homepage';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -11,7 +12,7 @@ function App() {
       <>
         <Switch>
           <Route exact path="/post/:id" component={Post} />
-          <Route exact path ="/admin" component={AddPost}/>
+          <Route exact path="/admin" component={AddPost} />
           <div className="App">
             <Homepage />
           </div>

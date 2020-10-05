@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchPosts } from '../store/actions/postAction';
 import ReactMarkdown from 'react-markdown';
+import axios from 'axios';
 
 export const Post = props => {
   const dispatch = useDispatch();
@@ -13,7 +14,18 @@ export const Post = props => {
   // eslint-disable-next-line
   let selectedPost = postReducer.posts.find(post => post.id == id);
   const [post] = useState(selectedPost);
-
+  const [like, setLike] = useState(post.likes);
+  const handleLike = () => {
+    axios
+      .get(`http://localhost:8080/like/${id}`)
+      .then(res => {
+        setLike(like + 1);
+        // console.log(res);
+      })
+      .catch(err => {
+        setLike(like - 1);
+      });
+  };
   return (
     <div className="container">
       <div className="row">
@@ -28,10 +40,12 @@ export const Post = props => {
         <hr />
         <section>
           <ReactMarkdown>{post.content}</ReactMarkdown>
+          <button onClick={handleLike}>Like</button>
         </section>
         <hr />
         <div>
-          <h6>comments</h6>
+          <h6>comments {post.totalComments}</h6>
+          <span> Likes {like}</span>
           {post.comments?.map(comment => (
             <div>
               <h6>{comment.commentor}</h6>

@@ -1,9 +1,11 @@
 import axios from 'axios';
+import { dispatch } from 'react-redux';
 
 const FETCH_POSTS_REQUEST = 'FETCH_POSTS_REQUEST';
 const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 const FETCH_POSTS_FAILURE = 'FETCH_POSTS_FAILURE';
 
+const SEARCH_POSTS = 'SEARCH_POSTS';
 
 const ADD_POST_REQUEST = 'ADD_POST_REQUEST';
 const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS';
@@ -38,6 +40,14 @@ export const fetchPostFailure = error => {
     info: 'Fetched posts Failed',
     payload: error,
     status: 'red',
+  };
+};
+export const searchPost = posts => {
+  return {
+    type: SEARCH_POSTS,
+    info: 'Searching',
+    payload: posts,
+    status: 'Searched',
   };
 };
 
@@ -87,6 +97,7 @@ export const deletePostFailure = error => {
     payload: error,
   };
 };
+
 export const fetchPosts = () => {
   return function (dispatch) {
     dispatch(fetchPostRequest());
@@ -102,7 +113,19 @@ export const fetchPosts = () => {
       });
   };
 };
-
+export const search = keyword => {
+  return function (dispatch) {
+    axios
+    .get(url + `/search/${keyword}`)
+    .then(res => {
+      dispatch(searchPost(res.data.data));
+        console.log(res);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  };
+};
 export const addPost = post => {
   return function (dispatch) {
     dispatch(addNewPostRequest());

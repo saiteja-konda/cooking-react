@@ -8,16 +8,19 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
+
 import rootReducer from './store/rootReducer';
 import { loadState, saveState } from './localStorage';
-import throttle from 'lodash/throttle'
+import throttle from 'lodash/throttle';
+
 const presistedState = loadState();
 const store = createStore(rootReducer, presistedState, composeWithDevTools(applyMiddleware(logger, thunk)));
 
-store.subscribe(throttle(() => {
-  saveState(store.getState());
-}, 1000));
-
+store.subscribe(
+  throttle(() => {
+    saveState(store.getState());
+  })
+);
 
 ReactDOM.render(
   <Provider store={store}>

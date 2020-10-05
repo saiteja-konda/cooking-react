@@ -10,7 +10,10 @@ const postReducer = (state = initState, action) => {
         loading: false,
         posts: action.payload,
       };
-
+    case 'SEARCH_POSTS':
+      return {
+        posts: action.payload,
+      };
     case 'ADD_POST_SUCCESS':
       return {
         posts: [action.payload, ...state.posts],

@@ -1,12 +1,14 @@
 import React from 'react';
-import {AddPost} from './AddPost';
-import {PostList} from './PostList';
+import Nav from './nav';
+// import {AddPost} from './AddPost';
+import {ClientPostList} from './ClientPostList';
 
 export const Homepage = () => {
   return (
     <>
-      <AddPost />
-      <PostList />
+      {/*<AddPost />*/}
+      <Nav/>
+      <ClientPostList />
     </>
   )
 }

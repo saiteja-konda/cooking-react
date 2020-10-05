@@ -16,7 +16,7 @@ const store = createStore(rootReducer, presistedState, composeWithDevTools(apply
 
 store.subscribe(throttle(() => {
   saveState(store.getState());
-}, 50000));
+}, 1000));
 
 
 ReactDOM.render(

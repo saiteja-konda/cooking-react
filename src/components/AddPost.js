@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addPost, fetchPosts } from '../store/actions/postAction';
+import { PostList } from './PostList';
 
 export const AddPost = () => {
   const [post, setPost] = useState({
-    // id: '',
     title: '',
     description: '',
     content: '',
@@ -54,6 +54,7 @@ export const AddPost = () => {
           </button>
         </div>
       </form>
+      <PostList/>
     </div>
   );
 };

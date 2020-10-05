@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchPosts } from '../store/actions/postAction';
+import ReactMarkdown from 'react-markdown';
 
 export const Post = props => {
   const dispatch = useDispatch();
@@ -9,9 +10,9 @@ export const Post = props => {
   }, [dispatch]);
   const { id } = props.match.params;
   const { postReducer } = useSelector(state => state);
-// eslint-disable-next-line
+  // eslint-disable-next-line
   let selectedPost = postReducer.posts.find(post => post.id == id);
-  const [post,] = useState(selectedPost);
+  const [post] = useState(selectedPost);
 
   return (
     <div className="container">
@@ -25,12 +26,26 @@ export const Post = props => {
           ))}
         </div>
         <hr />
+        <section>
+          <ReactMarkdown>{post.content}</ReactMarkdown>
+        </section>
+        <hr />
         <div>
           <h6>comments</h6>
           {post.comments?.map(comment => (
             <div>
               <h6>{comment.commentor}</h6>
               <p>{comment.comment}</p>
+              <p>{comment.commentedOn}</p>
+              <div>
+                {comment.replies?.map(reply => (
+                  <div>
+                    <p>{reply.reply}</p>
+                    <p>{reply.repliedBy}</p>
+                    <p>{reply.repliedOn}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
         </div>
@@ -38,26 +53,4 @@ export const Post = props => {
     </div>
   );
 };
-
 export default Post;
-
-// import React from 'react';
-// import { useSelector } from 'react-redux';
-// import { PostDetail } from './PostDetail';
-
-// export const Post = props => {
-//   const { postReducer } = useSelector(state => state);
-//   return (
-//       <div className="container">
-//       <div className="row">
-//           {postReducer.posts &&
-//           postReducer.posts.map(post => <PostDetail post={post} key={post.id} />)}
-//           </div>
-//     </div>
-//   );
-// };
-
-//   const dispatch = useDispatch();
-//   useEffect(() => {
-//     dispatch(fetchPost(id));
-//   }, [dispatch,id]);

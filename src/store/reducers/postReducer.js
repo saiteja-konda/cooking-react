@@ -14,6 +14,12 @@ const postReducer = (state = initState, action) => {
       return {
         posts: action.payload,
       };
+    case 'ADD_COMMENT':
+      // const updatedPost = state.posts.find(post => post.id == action.payload.id);
+      // updatedPost.comments.push(action.payload.updateComment);
+      return {
+        posts: [...state.posts],
+      };
     case 'ADD_POST_SUCCESS':
       return {
         posts: [action.payload, ...state.posts],
@@ -29,3 +35,8 @@ const postReducer = (state = initState, action) => {
 };
 
 export default postReducer;
+//  {
+//   ...state,
+//   // posts: updatedPost.comments.push(action.payload.upadatedComment),
+//   console.log(updatedPost);
+// };

@@ -1,11 +1,12 @@
 import axios from 'axios';
-import { dispatch } from 'react-redux';
 
 const FETCH_POSTS_REQUEST = 'FETCH_POSTS_REQUEST';
 const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 const FETCH_POSTS_FAILURE = 'FETCH_POSTS_FAILURE';
 
 const SEARCH_POSTS = 'SEARCH_POSTS';
+const ADD_COMMENT = 'ADD_COMMENT';
+const ADD_SUBSCRIBER = 'ADD_SUBSCRIBER';
 
 const ADD_POST_REQUEST = 'ADD_POST_REQUEST';
 const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS';
@@ -98,6 +99,22 @@ export const deletePostFailure = error => {
   };
 };
 
+export const addCommentSuccess = payload => {
+  return {
+    type: ADD_COMMENT,
+    info: 'Comment added successfully',
+    status: 'green',
+    payload: payload,
+  };
+};
+export const addSubscriberSuccess = subscriber => {
+  return {
+    type: ADD_SUBSCRIBER,
+    info: 'Added new subscriber successfully',
+    status: 'green',
+    payload: subscriber,
+  };
+};
 export const fetchPosts = () => {
   return function (dispatch) {
     dispatch(fetchPostRequest());
@@ -116,9 +133,9 @@ export const fetchPosts = () => {
 export const search = keyword => {
   return function (dispatch) {
     axios
-    .get(url + `/search/${keyword}`)
-    .then(res => {
-      dispatch(searchPost(res.data.data));
+      .get(url + `/search/${keyword}`)
+      .then(res => {
+        dispatch(searchPost(res.data.data));
         console.log(res);
       })
       .catch(err => {
@@ -149,6 +166,40 @@ export const deletePost = id => {
       })
       .catch(err => {
         dispatch(deletePostFailure(err.response.data));
+      });
+  };
+};
+
+export const addComment = (id, obj) => {
+  return function (dispatch) {
+    axios
+      .post(`http://localhost:8080/comment/${id}`, obj)
+      .then(res => {
+        const payload = { id: id, upadatedComment: res.data };
+        dispatch(addCommentSuccess(payload));
+      })
+      .catch(err => {});
+  };
+};
+export const Sendlike = id => {
+  return function (dispatch) {
+    axios
+      .get(`http://localhost:8080/like/${id}`)
+      .then(res => {
+        // dispatch(fetchPosts());
+      })
+      .catch(err => {});
+  };
+};
+export const addSubscriber = subscriber => {
+  return function (dispatch) {
+    axios
+      .post('http://localhost:8080/subscribers', subscriber)
+      .then(res => {
+        dispatch(addSubscriberSuccess(res.data));
+      })
+      .catch(err => {
+        console.error(err);
       });
   };
 };

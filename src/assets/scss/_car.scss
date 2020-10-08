@@ -1,0 +1,55 @@
+.car {
+  position: relative;
+  text-align: left;
+  color: white;
+  margin-top: 72px;
+}
+.car-text {
+  position: absolute;
+  top: 60%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  text-shadow: 6px 6px 8px #000000;
+  text-decoration-style: solid;
+}
+
+.heading {
+  color: #fff;
+  height: 256px;
+  line-height: 80px;
+  text-align: left;
+  font-size: 62px;
+  word-wrap: break-word;
+}
+
+.sub-heading {
+  color: #fff;
+  margin-top: 60px;
+  font-size: 20px;
+  text-align: left;
+}
+
+@media (max-width: '400px') {
+  .car {
+    margin-top: 56px;
+  }
+  .car-text {
+    position: absolute;
+    top: 40%;
+    left: 38%;
+    transform: translate(-50%, -50%);
+    text-shadow: 6px 6px 8px #000000;
+    text-decoration-style: solid;
+  }
+  .heading {
+    font-size: 32px;
+    height: 90px;
+    line-height: 35px;
+  }
+  .sub-heading {
+    color: #fff;
+    margin-top: 120px;
+    font-size: 15px;
+    text-align: left;
+  }
+}

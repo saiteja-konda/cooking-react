@@ -4,6 +4,10 @@ const FETCH_POSTS_REQUEST = 'FETCH_POSTS_REQUEST';
 const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 const FETCH_POSTS_FAILURE = 'FETCH_POSTS_FAILURE';
 
+const FETCH_SINGLE_POST_REQUEST = 'FETCH_SINGLE_POST_REQUEST';
+const FETCH_SINGLE_POST_SUCCESS = 'FECTH_SINGLE_POST_SUCCESS';
+const FETCH_SINGLE_POST_FAILURE = 'FECTH_SINGLE_POST_FAILUR';
+
 const SEARCH_POSTS = 'SEARCH_POSTS';
 const ADD_COMMENT = 'ADD_COMMENT';
 const ADD_SUBSCRIBER = 'ADD_SUBSCRIBER';
@@ -34,7 +38,30 @@ export const fetchPostSuccess = posts => {
     status: 'green',
   };
 };
+export const fetchSinglePostRequest = () => {
+  return {
+    type: FETCH_SINGLE_POST_REQUEST,
+    info: `Requesting to fetch post`,
+    status: 'orange',
+  };
+};
+export const fetchSinglePostSuccess = post => {
+  return {
+    type: FETCH_SINGLE_POST_SUCCESS,
+    info: `Post fetched successfully`,
+    payload: post,
 
+    status: 'green',
+  };
+};
+export const fetchSinglePostFailure = error => {
+  return {
+    type: FETCH_SINGLE_POST_FAILURE,
+    info: 'failed to fetch post',
+    payload: error,
+    status: 'red',
+  };
+};
 export const fetchPostFailure = error => {
   return {
     type: FETCH_POSTS_FAILURE,
@@ -127,6 +154,22 @@ export const fetchPosts = () => {
       })
       .catch(error => {
         dispatch(fetchPostFailure(error.message));
+      });
+  };
+};
+
+export const fetchPost = id => {
+  return function (dispatch) {
+    dispatch(fetchSinglePostRequest(id));
+
+    axios
+      .get(url + `/${id}`)
+      .then(res => {
+        const post = res.data;
+        dispatch(fetchSinglePostSuccess(post));
+      })
+      .catch(err => {
+        dispatch(fetchSinglePostFailure(err.response.data));
       });
   };
 };

@@ -9,7 +9,11 @@
 
 .date {
   font-size: 12px;
-  font-style: italic;
+  font-style: none;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 500;
+  line-height: 24px;
+  color: #b6b6b6;
 }
 
 .postImage {
@@ -35,3 +39,4 @@
 .content {
     margin-top: 30px;
 }
+

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import AdminApp from './AdminApp';
 import * as serviceWorker from './serviceWorker';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -10,7 +11,7 @@ import thunk from 'redux-thunk';
 import 'antd/dist/antd.css';
 import './assets/scss/base.scss'
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { BrowserRouter as  Route  } from 'react-router-dom';
 import rootReducer from './store/rootReducer';
 import { loadState, saveState } from './localStorage';
 // import throttle from 'lodash/throttle';
@@ -34,6 +35,7 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

@@ -1,8 +1,21 @@
 .footer {
-  padding: 20px;
+  padding: 10px;
   text-align: center;
   background: rgb(0, 0, 0);
   //   margin-top: 20px;
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    color: white;
+  }
+  ul li {
+    text-decoration: none;
+    list-style: none;
+  }
+  li {
+    margin-left: 50px;
+  }
 }
 
 h2,
@@ -11,24 +24,12 @@ h1 {
 }
 
 .top {
-  background-color: #545454;
+  background-color: #2f2e38;
+  margin-top: 50px;
 }
 
 hr.hr {
   border: 1px solid #545454;
-}
-
-ul {
-  display: flex;
-  flex-direction: row;
-  color: white;
-}
-ul li {
-  text-decoration: none;
-  list-style: none;
-}
-li {
-  margin-left: 50px;
 }
 
 .copyright {
@@ -49,7 +50,7 @@ li {
 }
 
 .innerdiv {
-  margin: 100px;
+  margin: 50px;
   h5 {
     text-align: left;
     color: white;
@@ -59,16 +60,18 @@ li {
   }
   Input {
     width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
+    padding: 12px 35px;
+    margin: 6px 0;
     box-sizing: border-box;
-    background-color: #bbb8b8;
+    background-color: #7c7c7c;
+    border-radius: 6px;
     border: 0px;
   }
   .sub {
     margin-top: 2px;
     padding: 12px 20px;
     border-color: #bbb8b8;
+    background-color:#1db954;
     border: 2px;
   }
   ::placeholder {
@@ -79,6 +82,14 @@ li {
 }
 
 @media (max-width: '780px') {
+  .footer {
+    ul {
+      justify-content: space-around;
+    }
+    li {
+      margin-left: 0%;
+    }
+  }
   .threediv {
     display: flex;
     flex-direction: column;
@@ -92,12 +103,5 @@ li {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    
-  }
-  ul {
-    justify-content: space-around;
-  }
-  li {
-    margin-left: 0%;
   }
 }

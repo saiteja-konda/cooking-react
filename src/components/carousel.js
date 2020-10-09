@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Carousel } from 'antd';
 import { useSelector } from 'react-redux';
 
 const MyCarousel = () => {
   const { postReducer } = useSelector(state => state);
+
   return (
-    <Carousel autoplay>
+    <Carousel fade dotPosition="right" autoplay>
       {postReducer.posts.map(post => (
         <div className="car" key={post.id}>
           <img className="car-image" src={post.imageUrl} atl={post.title} />

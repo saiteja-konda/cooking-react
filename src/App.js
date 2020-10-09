@@ -7,13 +7,11 @@ import { AddPost } from './components/AddPost';
 import Nav from './components/nav';
 import About from './components/About';
 import Contact from './components/Contact';
-import Footer from './components/footer';
 
 function App() {
   return (
     <Router>
       <div>
-        <Nav />
         <Switch>
           <Route exact path="/" component={Homepage} />
           <Route exact path="/about" component={About} />
@@ -22,7 +20,6 @@ function App() {
           <Route exact path="/admin" component={AddPost} />
           <Homepage />
         </Switch>
-        <Footer />
       </div>
     </Router>
   );

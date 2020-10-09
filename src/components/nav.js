@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-const Nav = () => {
+const Nav = (props) => {
   return (
     <div>
       <Navbar fixed="top" className="navbar navbar-fixed-top">
